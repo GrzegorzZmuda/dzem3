@@ -37,7 +37,7 @@ def shot(ang,targ,pt):
                 targ[ls[i][1]][ls[i][0]][2] = 200
                 flag=True
                 pt=pt+1
-                d=i-2
+                d=ls[i][0]-1
                 fl=True
                 b=1
                 while d>-1 and fl==True:
