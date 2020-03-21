@@ -23,7 +23,7 @@ def shot(ang,targ,pt):
         x=200-math.sin(math.radians(ang))*temp
         if x>0 and x<400:
             ls.append([4-i-1,int(x//40)])
-    print(ls)
+
     if ls==[]:
         pygame.quit()
         exit()
@@ -37,15 +37,19 @@ def shot(ang,targ,pt):
                 targ[ls[i][1]][ls[i][0]][2] = 200
                 flag=True
                 pt=pt+1
-                d=i
+                d=i-2
                 fl=True
+                b=1
                 while d>-1 and fl==True:
-                    if targ[d][ls[i][0]][1]==255:
-                        targ[d][ls[i][0]][0] = 200
-                        targ[d][ls[i][0]][1] = 200
-                        targ[d][ls[i][0]][2] = 200
+                    print(d)
+                    if targ[ls[i][1]][d][1]==255:
+                        targ[ls[i][1]][d][0] = 200
+                        targ[ls[i][1]][d][1] = 200
+                        targ[ls[i][1]][d][2] = 200
                         d=d-1
-                        pt = pt + 1
+                        b=b*2
+                        pt = pt + 1+b
+                        b = b * 2
                     else:
                         fl=False
                 break
