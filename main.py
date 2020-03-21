@@ -99,7 +99,7 @@ treeimg = pygame.image.load('a.png')
 
 
 load=input()
-load="aawwawwwawwwawwwawawawwwawwwawwwawwwawwwawwwawww"
+
 for i in range(40):
     if i<len(load):
         if load[i]=='a':
