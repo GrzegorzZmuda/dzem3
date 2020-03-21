@@ -41,7 +41,7 @@ def shot(ang,targ,pt):
                 fl=True
                 b=1
                 while d>-1 and fl==True:
-                    print(d)
+        
                     if targ[ls[i][1]][d][1]==255:
                         targ[ls[i][1]][d][0] = 200
                         targ[ls[i][1]][d][1] = 200
