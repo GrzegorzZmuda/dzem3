@@ -15,11 +15,47 @@ tab=np.zeros((10,4,3))
 
 
 
-class klocek():
-    def __init__(self, rot):
-        self.posx=200
-        self.posy = 600
-        self.rt=rot
+def shot(ang,targ,pt):
+    ls=[]
+    temp=400
+    for i in range(4):
+        temp=temp+40
+        x=200-math.sin(math.radians(ang))*temp
+        if x>0 and x<400:
+            ls.append([4-i-1,int(x//40)])
+    print(ls)
+    if ls==[]:
+        pygame.quit()
+        exit()
+
+    else:
+        flag=False
+        for i in range(len(ls)):
+            if targ[ls[i][1]][ls[i][0]][1]==255:
+                targ[ls[i][1]][ls[i][0]][0] = 200
+                targ[ls[i][1]][ls[i][0]][1] = 200
+                targ[ls[i][1]][ls[i][0]][2] = 200
+                flag=True
+                pt=pt+1
+                d=i
+                fl=True
+                while d>-1 and fl==True:
+                    if targ[d][ls[i][0]][1]==255:
+                        targ[d][ls[i][0]][0] = 200
+                        targ[d][ls[i][0]][1] = 200
+                        targ[d][ls[i][0]][2] = 200
+                        d=d-1
+                        pt = pt + 1
+                    else:
+                        fl=False
+                break
+        if flag==False:
+            i=len(ls)-1
+            targ[ls[i][1]][ls[i][0]][0] = 200
+            targ[ls[i][1]][ls[i][0]][1] = 255
+            targ[ls[i][1]][ls[i][0]][2] = 255
+            pt = pt - 2
+    return pt
 
 
 def rotdir(a):
@@ -59,6 +95,7 @@ treeimg = pygame.image.load('a.png')
 
 
 load=input()
+load="aawwawwwawwwawwwawawawwwawwwawwwawwwawwwawwwawww"
 for i in range(40):
     if i<len(load):
         if load[i]=='a':
@@ -73,8 +110,6 @@ for i in range(40):
         tab[i // 4][i % 4][0] = 200
         tab[i // 4][i % 4][1] = 200
         tab[i // 4][i % 4][2] = 200
-
-print(tab)
 
 while Running:
     text = font.render(str(points), True, (255, 255, 255), (100, 100, 100))
@@ -103,4 +138,6 @@ while Running:
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                 rd=rotdir(rd)
-
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_l:
+                points=shot(rstate,tab,points)
